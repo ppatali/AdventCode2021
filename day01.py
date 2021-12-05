@@ -3,7 +3,7 @@
 from typing import List
 
 
-def CountIncreases(measurements: List) -> int:
+def NumberofIncreases(measurements: List) -> int:
     if not measurements:
         return 0
 
@@ -18,7 +18,7 @@ def CountIncreases(measurements: List) -> int:
     return count
 
 
-def CountIncreasesWithSlidingWindow(measurements: List) -> int:
+def NumberofIncreasesWithSlidingWindow(measurements: List) -> int:
     if not measurements:
         return 0
 
@@ -41,9 +41,9 @@ def CountIncreasesWithSlidingWindow(measurements: List) -> int:
 
 def main():
     with open("day01.input.txt", "rt") as inputFile:
-        print(f"Count increases = {CountIncreases(inputFile.readlines())}")
+        print(f"Number of increased measurements = {NumberofIncreases(inputFile.readlines())}")
         inputFile.seek(0)
-        print(f"Count increases with sliding window = {CountIncreasesWithSlidingWindow(inputFile.readlines())}")
+        print(f"Number of increased measurements with three-measurements sliding window = {NumberofIncreasesWithSlidingWindow(inputFile.readlines())}")
 
 if __name__ == "__main__":
     main()
