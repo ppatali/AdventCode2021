@@ -16,6 +16,12 @@ Note: This is part of my learning Python language.
 - [Python – Read Text File](https://pythonexamples.org/python-read-text-file/)
 - [Python Open File – How to Read a Text File Line by Line](https://www.freecodecamp.org/news/python-open-file-how-to-read-a-text-file-line-by-line/)
 - [Python String Interpolation](https://www.geeksforgeeks.org/python-string-interpolation/)
+- [Ternary Operator in Python](https://www.geeksforgeeks.org/ternary-operator-in-python/)
+- [Python : How to iterate over the characters in string ?](https://thispointer.com/python-how-to-iterate-over-the-characters-in-string/)
+- [Python Bitwise Operators](https://www.geeksforgeeks.org/python-bitwise-operators)
+- [Filtering Lists in Python](https://towardsdatascience.com/filtering-lists-in-python-a3387c7b6b5e)
+- [How to Filter List Elements in Python](https://www.pythontutorial.net/python-basics/python-filter-list/)
+- [Check if a Character Is a Number in Python](https://www.delftstack.com/howto/python/python-check-if-character-is-number/)
 
 ### Python with VS Code
 - [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)

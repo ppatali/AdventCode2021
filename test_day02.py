@@ -8,8 +8,8 @@ def test_Part1Result():
         assert finalX * finalY == 1580000
 
 
-def test_Part1Result():
+def test_Part2Result():
     with open("day02.input.txt", "rt") as inputFile:
         finalX, finalY, finalZ = NavigatewithAim(0, 0, 0, inputFile.readlines())
         assert finalX == 1975 and finalY == 633551 and finalZ == 800
-        assert finalX * finalY == 1251263226
+        assert finalX * finalY == 1251263225
