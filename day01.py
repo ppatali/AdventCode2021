@@ -3,74 +3,25 @@
 from typing import List
 
 
-def NumberofIncreases(measurements: List) -> int:
-    if not measurements:
-        return 0
-
-    count = 0
-    for i in range(1, len(measurements)):
-
-        prev, curr = int(measurements[i - 1]), int(measurements[i])
-        # print(f"(prev, curr) = ({prev}, {curr})")
-        if prev < curr:
-            count += 1
-
-    return count
-
-
-def NumberofIncreasesWithThreeMeasurementSlidingWindow(measurements: List) -> int:
-    if not measurements:
-        return 0
-
-    count = 0
-    for i in range(3, len(measurements)):
-        sumPrevWindow = (
-            int(measurements[i - 3])
-            + int(measurements[i - 2])
-            + int(measurements[i - 1])
-        )
-        sumCurrWindow = (
-            int(measurements[i - 2]) + int(measurements[i - 1]) + int(measurements[i])
-        )
-
-        if sumPrevWindow < sumCurrWindow:
-            count += 1
-
-    return count
-
-
-def NumberofIncreasesWithNMeasurementSlidingWindow(
-    measurements: List, windowSize: int = 1
-) -> int:
-    if not measurements:
-        return 0
-
+def UpTrendsInSlidingWindow(measurements: List, windowSize: int = 1) -> int:
     count = 0
     for i in range(windowSize, len(measurements)):
-
-        sumPrevWindow = sumCurrWindow = 0
-        for j in range(0, windowSize):
-            sumPrevWindow += int(measurements[i - j - 1])
-            sumCurrWindow += int(measurements[i - j])
-
-        if sumPrevWindow < sumCurrWindow:
+        if measurements[i - windowSize] < measurements[i]:
             count += 1
-
     return count
 
 
 def main():
     with open("day01.input.txt", "rt") as inputFile:
+        measurements = [int(measurement) for measurement in inputFile.readlines()]
         print(
             f"Number of increased measurements = "
-            f"{NumberofIncreasesWithNMeasurementSlidingWindow(inputFile.readlines())}"
+            f"{UpTrendsInSlidingWindow(measurements)}"
         )
-
-        inputFile.seek(0)
 
         print(
             f"Number of increased measurements with three-measurements sliding window = "
-            f"{NumberofIncreasesWithNMeasurementSlidingWindow(inputFile.readlines(), 3)}"
+            f"{UpTrendsInSlidingWindow(measurements, 3)}"
         )
 
 

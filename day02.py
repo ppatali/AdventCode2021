@@ -3,45 +3,49 @@
 from typing import List, Tuple
 
 
-def Navigate(startX: int, startY: int, route: List) -> Tuple[int, int]:
-    finalX, finalY = startX, startY
+def Navigate(startHorizPos: int, startDepth: int, route: List) -> Tuple[int, int]:
+    finalHorizPos, finalDepth = startHorizPos, startDepth
 
     for instruction in route:
         direction, distance = instruction.split()
         if direction == "forward":
-            finalX += int(distance)
+            finalHorizPos += int(distance)
         elif direction == "down":
-            finalY += int(distance)
+            finalDepth += int(distance)
         elif direction == "up":
-            finalY -= int(distance)
+            finalDepth -= int(distance)
 
-    return finalX, finalY
+    return finalHorizPos, finalDepth
 
 
 def NavigatewithAim(
-    startX: int, startY: int, startZ: int, route: List
+    startHorizPos: int, startDepth: int, startAim: int, route: List
 ) -> Tuple[int, int, int]:
-    finalX, finalY, finalZ = startX, startY, startZ
+    finalHorizPos, finalDepth, finalAim = startHorizPos, startDepth, startAim
 
     for instruction in route:
         direction, distance = instruction.split()
         if direction == "forward":
-            finalX += int(distance)
-            finalY += finalZ * int(distance)
+            finalHorizPos += int(distance)
+            finalDepth += finalAim * int(distance)
         elif direction == "down":
-            finalZ += int(distance)
+            finalAim += int(distance)
         elif direction == "up":
-            finalZ -= int(distance)
+            finalAim -= int(distance)
 
-    return finalX, finalY, finalZ
+    return finalHorizPos, finalDepth, finalAim
 
 
 def main():
     with open("day02.input.txt", "rt") as inputFile:
-        finalX, finalY, finalZ = NavigatewithAim(0, 0, 0, inputFile.readlines())
+        finalHorizPos, finalDepth, finalAim = NavigatewithAim(
+            0, 0, 0, inputFile.readlines()
+        )
         print(f"Final position:")
-        print(f"(X, Y, Z) = ({finalX}, {finalY}, {finalZ})")
-        print(f"X * Y = {finalX *finalY}")
+        print(
+            f"(Horizontal Position, Depth, Aim) = ({finalHorizPos}, {finalDepth}, {finalAim})"
+        )
+        print(f"Horizontal Position * Depth = {finalHorizPos *finalDepth}")
 
 
 if __name__ == "__main__":
