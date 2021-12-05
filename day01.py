@@ -18,7 +18,7 @@ def NumberofIncreases(measurements: List) -> int:
     return count
 
 
-def NumberofIncreasesWithSlidingWindow(measurements: List) -> int:
+def NumberofIncreasesWithThreeMeasurementSlidingWindow(measurements: List) -> int:
     if not measurements:
         return 0
 
@@ -39,11 +39,40 @@ def NumberofIncreasesWithSlidingWindow(measurements: List) -> int:
     return count
 
 
+def NumberofIncreasesWithNMeasurementSlidingWindow(
+    measurements: List, windowSize: int = 1
+) -> int:
+    if not measurements:
+        return 0
+
+    count = 0
+    for i in range(windowSize, len(measurements)):
+
+        sumPrevWindow = sumCurrWindow = 0
+        for j in range(0, windowSize):
+            sumPrevWindow += int(measurements[i - j - 1])
+            sumCurrWindow += int(measurements[i - j])
+
+        if sumPrevWindow < sumCurrWindow:
+            count += 1
+
+    return count
+
+
 def main():
     with open("day01.input.txt", "rt") as inputFile:
-        print(f"Number of increased measurements = {NumberofIncreases(inputFile.readlines())}")
+        print(
+            f"Number of increased measurements = "
+            f"{NumberofIncreasesWithNMeasurementSlidingWindow(inputFile.readlines())}"
+        )
+
         inputFile.seek(0)
-        print(f"Number of increased measurements with three-measurements sliding window = {NumberofIncreasesWithSlidingWindow(inputFile.readlines())}")
+
+        print(
+            f"Number of increased measurements with three-measurements sliding window = "
+            f"{NumberofIncreasesWithNMeasurementSlidingWindow(inputFile.readlines(), 3)}"
+        )
+
 
 if __name__ == "__main__":
     main()
