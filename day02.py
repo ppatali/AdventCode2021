@@ -3,7 +3,9 @@
 from typing import List, Tuple
 
 
-def Navigate(startHorizPos: int, startDepth: int, route: List) -> Tuple[int, int]:
+def Navigate(
+    route: List, startHorizPos: int = 0, startDepth: int = 0
+) -> Tuple[int, int]:
     finalHorizPos, finalDepth = startHorizPos, startDepth
 
     for instruction in route:
@@ -19,7 +21,10 @@ def Navigate(startHorizPos: int, startDepth: int, route: List) -> Tuple[int, int
 
 
 def NavigatewithAim(
-    startHorizPos: int, startDepth: int, startAim: int, route: List
+    route: List,
+    startHorizPos: int = 0,
+    startDepth: int = 0,
+    startAim: int = 0,
 ) -> Tuple[int, int, int]:
     finalHorizPos, finalDepth, finalAim = startHorizPos, startDepth, startAim
 
@@ -38,9 +43,7 @@ def NavigatewithAim(
 
 def main():
     with open("day02.input.txt", "rt") as inputFile:
-        finalHorizPos, finalDepth, finalAim = NavigatewithAim(
-            0, 0, 0, inputFile.readlines()
-        )
+        finalHorizPos, finalDepth, finalAim = NavigatewithAim(inputFile.readlines())
         print(f"Final position:")
         print(
             f"(Horizontal Position, Depth, Aim) = ({finalHorizPos}, {finalDepth}, {finalAim})"
