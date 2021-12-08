@@ -26,7 +26,8 @@ Note: This is part of my learning Python language.
 - [Python Sets](https://www.programiz.com/python-programming/set)
 - [Empty set literal?](https://stackoverflow.com/questions/6130374/empty-set-literal)
 - [List of lists changes reflected across sublists unexpectedly](https://stackoverflow.com/q/240178/5256015)
-
+- [How can I specify the function type in my type hints?](https://stackoverflow.com/q/37835179/5256015)
+  
 ### Python with VS Code
 - [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
 - [VSCode GUI tour: Explore The Elements of This Powerful IDE](https://python.land/creating-python-programs/vscode-gui-tour)
