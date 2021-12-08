@@ -25,6 +25,7 @@ Note: This is part of my learning Python language.
 - [Representing matrix in Python using nested List; Not using NumPy](https://stackoverflow.com/a/28019848/5256015)
 - [Python Sets](https://www.programiz.com/python-programming/set)
 - [Empty set literal?](https://stackoverflow.com/questions/6130374/empty-set-literal)
+- [List of lists changes reflected across sublists unexpectedly](https://stackoverflow.com/q/240178/5256015)
 
 ### Python with VS Code
 - [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
