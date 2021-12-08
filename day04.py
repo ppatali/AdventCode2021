@@ -91,10 +91,10 @@ def GetBoardScore(board: List[List[int]], lastDraw: int) -> int:
 def PlayBingo(fileName: str) -> int:
     score = -1
 
-    readDraws, readBoards = ReadInput(fileName)
+    draws, boards = ReadInput(fileName)
 
-    for draw in readDraws:
-        for board in readBoards:
+    for draw in draws:
+        for board in boards:
             MarkBoard(board, draw)
             if IsAWinner(board):
                 score = GetBoardScore(board, draw)
@@ -107,26 +107,26 @@ def PlayBingo(fileName: str) -> int:
 
 def PlayBingoToLoose(fileName: str) -> int:
 
-    readDraws, readBoards = ReadInput(fileName)
+    draws, boards = ReadInput(fileName)
 
     winnerBoardIndices = set()
     lastWinnerBoardIndex = None
     lastWinningDraw = None
 
-    for draw in readDraws:
+    for draw in draws:
 
-        for i in range(len(readBoards)):
+        for i in range(len(boards)):
             if i in winnerBoardIndices:
                 continue
 
-            MarkBoard(readBoards[i], draw)
-            if IsAWinner(readBoards[i]):
+            MarkBoard(boards[i], draw)
+            if IsAWinner(boards[i]):
                 winnerBoardIndices.add(i)
                 lastWinnerBoardIndex = i
                 lastWinningDraw = draw
 
     if len(winnerBoardIndices) > 1:
-        return GetBoardScore(readBoards[lastWinnerBoardIndex], lastWinningDraw)
+        return GetBoardScore(boards[lastWinnerBoardIndex], lastWinningDraw)
     else:
         return None
 
