@@ -16,17 +16,15 @@ def test_CountDigitsInOutput():
     ]
 
     lines = ReadInputLinesAsSets(input)
-    assert 26 == CountDigitsWithGivenSegmentLengthInOutput(lines, [2, 3, 4, 7])
+    assert 26 == Count1478(lines)
 
 
 def test_Part1Result():
     with open("day08.input.txt", "rt") as inputFile:
         readlines = inputFile.readlines()
         lines = ReadInputLinesAsSets(readlines)
-        digitsWithSegmentLengthToFind = [2, 3, 4, 7]
-        assert 512 == CountDigitsWithGivenSegmentLengthInOutput(
-            lines, digitsWithSegmentLengthToFind
-        )
+
+        assert 512 == Count1478(lines)
 
 
 def test_ReadInputLinesAsSets():

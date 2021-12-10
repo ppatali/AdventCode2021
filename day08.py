@@ -15,13 +15,10 @@ def ReadInputLinesAsSets(
     return lines
 
 
-def CountDigitsWithGivenSegmentLengthInOutput(
-    lines: List[Tuple[List[Set[str]], List[Set[str]]]],
-    digitsWithSegmentLengthToFind: List[int],
-) -> int:
+def Count1478(lines: List[Tuple[List[Set[str]], List[Set[str]]]]) -> int:
     count = 0
     for _, outputs in lines:
-        count += len([o for o in outputs if len(o) in digitsWithSegmentLengthToFind])
+        count += len([o for o in outputs if len(o) in [2, 3, 4, 7]])
     return count
 
 
@@ -84,7 +81,7 @@ def DecodeSignals(signals: List[Set[str]]) -> List[Set[str]]:
 
 
 def DecodeOutputs(outputs: List[Set[str]], decodeSignals: List[Set[str]]) -> int:
-    return int("".join([str(decodeSignals.index(o)) for o in outputs]))
+    return int("".join(str(decodeSignals.index(o)) for o in outputs))
 
 
 def Decode(lines: List[Tuple[List[Set[str]], List[Set[str]]]]) -> List[int]:
@@ -99,10 +96,7 @@ def main():
     with open("day08.input.txt", "rt") as inputFile:
         readlines = inputFile.readlines()
         lines = ReadInputLinesAsSets(readlines)
-        print(
-            f"Number of occurances of 1, 4, 7, 8 = {CountDigitsWithGivenSegmentLengthInOutput(lines, [2, 3, 4, 7])}"
-        )
-
+        print(f"Number of 1, 4, 7, 8 = {Count1478(lines)}")
         print(f"Sum of all output values = {sum(Decode(lines))}")
 
 
