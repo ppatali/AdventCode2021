@@ -72,6 +72,21 @@ def MoveAStep(octopuses: List[List[int]]) -> int:
 
     return len(flashes)
 
+def AreAllOctopusesFlash(octopuses: List[List[int]]) -> bool:
+    for y in range(len(octopuses)):
+        for x in range(len(octopuses[y])):
+            if octopuses[y][x] != 0:
+                return False
+    return True
+
+
+def FindSynchronizedFlashStep(octopuses: List[List[int]]) -> int:
+    step = 0
+    while not AreAllOctopusesFlash(octopuses):
+        step += 1
+        MoveAStep(octopuses)
+    return step
+
 
 def main():
     with open("day11.input.txt", "rt") as inputFile:
@@ -80,6 +95,10 @@ def main():
         for _ in range(100):
             totalFlashes += MoveAStep(octopuses)
         print(f"After 100 steps, total flashes = {totalFlashes}")
+    
+        inputFile.seek(0)
+        octopuses = [[int(x) for x in y.strip()] for y in inputFile.readlines()]
+        print(f"Number of steps when all octopuses flash together = {FindSynchronizedFlashStep(octopuses)}")
 
 
 if __name__ == "__main__":
