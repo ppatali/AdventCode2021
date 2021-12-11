@@ -17,7 +17,7 @@ def test_Test3():
 
 
 def test_Part1Result():
-    with open("day01.input.txt", "rt") as inputFile:
+    with open("src/day01.input.txt", "rt") as inputFile:
         measurements = [int(measurement) for measurement in inputFile.readlines()]
         assert UpTrendsInSlidingWindow(measurements) == 1233
 
@@ -28,7 +28,7 @@ def test_Test4():
 
 
 def test_Part2Result():
-    with open("day01.input.txt", "rt") as inputFile:
+    with open("src/day01.input.txt", "rt") as inputFile:
         measurements = [int(measurement) for measurement in inputFile.readlines()]
         assert UpTrendsInSlidingWindow(measurements, 3) == 1275
 

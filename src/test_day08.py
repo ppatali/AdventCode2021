@@ -20,7 +20,7 @@ def test_CountDigitsInOutput():
 
 
 def test_Part1Result():
-    with open("day08.input.txt", "rt") as inputFile:
+    with open("src/day08.input.txt", "rt") as inputFile:
         readlines = inputFile.readlines()
         lines = ReadInputLinesAsSets(readlines)
 
@@ -95,7 +95,7 @@ def test_DecodeSample2():
 
 
 def test_Part2Result():
-    with open("day08.input.txt", "rt") as inputFile:
+    with open("src/day08.input.txt", "rt") as inputFile:
         readlines = inputFile.readlines()
         lines = ReadInputLinesAsSets(readlines)
         assert 1091165 == sum(Decode(lines))

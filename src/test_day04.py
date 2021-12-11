@@ -54,7 +54,7 @@ def test_ReadFileInput():
             [2, 0, 12, 3, 7],
         ],
     ]
-    readDraws, readBoards = ReadInput("day04.test.input.txt")
+    readDraws, readBoards = ReadInput("src/day04.test.input.txt")
     assert testDraws == readDraws
     assert testBoards == readBoards
 
@@ -150,10 +150,10 @@ def test_GetBoardScore():
 
 
 def test_Part1Result():
-    assert 4512 == PlayBingo("day04.test.input.txt")
-    assert 49860 == PlayBingo("day04.input.txt")
+    assert 4512 == PlayBingo("src/day04.test.input.txt")
+    assert 49860 == PlayBingo("src/day04.input.txt")
 
 
 def test_Part2Result():
-    assert 1924 == PlayBingoToLoose("day04.test.input.txt")
-    assert 24628 == PlayBingoToLoose("day04.input.txt")
+    assert 1924 == PlayBingoToLoose("src/day04.test.input.txt")
+    assert 24628 == PlayBingoToLoose("src/day04.input.txt")

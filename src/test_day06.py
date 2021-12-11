@@ -56,7 +56,7 @@ def test_Evolve():
 
 
 def test_Part1Result():
-    with open("day06.input.txt", "rt") as inputFile:
+    with open("src/day06.input.txt", "rt") as inputFile:
         population = [int(i) for i in inputFile.readline().split(",")]
         assert 360268 == EvolveForDays(population, 80)
 
@@ -103,6 +103,6 @@ def test_EvolveGenerations():
 
 
 def test_Part2Result():
-    with open("day06.input.txt", "rt") as inputFile:
+    with open("src/day06.input.txt", "rt") as inputFile:
         population = [int(i) for i in inputFile.readline().split(",")]
         assert 1632146183902 == EvolvePopulationForDaysUsingGeneration(population, 256)

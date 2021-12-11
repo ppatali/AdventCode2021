@@ -38,7 +38,7 @@ def test_RiskScore():
 
 
 def test_Part1Result():
-    with open("day09.input.txt", "rt") as inputFile:
+    with open("src/day09.input.txt", "rt") as inputFile:
         heatmap = [line.strip() for line in inputFile.readlines()]
         assert 425 == ComputRiskScore(
             FindLowPoints(heatmap, FindLowPointCoordinates(heatmap))
@@ -79,7 +79,7 @@ def test_Compute3LargestBasinsWeight():
 
 
 def test_Part2Result():
-    with open("day09.input.txt", "rt") as inputFile:
+    with open("src/day09.input.txt", "rt") as inputFile:
         heatmap = [line.strip() for line in inputFile.readlines()]
         lowPointCoorinates = FindLowPointCoordinates(heatmap)
         lowPoints = FindLowPoints(heatmap, lowPointCoorinates)

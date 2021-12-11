@@ -23,7 +23,7 @@ def test_Test1():
 
 
 def test_Part1Result():
-    with open("day03.input.txt", "rt") as inputFile:
+    with open("src/day03.input.txt", "rt") as inputFile:
         gammaVal, epsilonValue, power = ComputePowerConsumption(
             inputFile.readlines(), 12
         )
@@ -54,7 +54,7 @@ def test_Test2():
 
 
 def test_Part2Result():
-    with open("day03.input.txt", "rt") as inputFile:
+    with open("src/day03.input.txt", "rt") as inputFile:
         readings = [reading.strip() for reading in inputFile.readlines()]
         oxygenRating, co2Rating, lifeSupportRating = LifeSuportRating(readings, 12)
         assert 2545 == oxygenRating

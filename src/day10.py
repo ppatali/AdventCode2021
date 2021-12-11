@@ -51,7 +51,7 @@ def FindAutoCompletes(lines: List[str]) -> List[str]:
     return autocompletes
 
 
-def ComputeAutoCompletWinner(autocompletes: List[str]):
+def ComputeAutoCompletWinner(autocompletes: List[str]) -> int:
     scores = []
     for line in autocompletes:
         score = 0

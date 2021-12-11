@@ -96,7 +96,7 @@ def test_CountOverlap():
 
 
 def test_Part1Result():
-    with open("day05.input.txt", "rt") as inputFile:
+    with open("src/day05.input.txt", "rt") as inputFile:
         lines = ReadInputLines(inputFile.readlines())
         matrix = PlotHorizontalAndVerticalLines(lines)
         assert 5632 == CountOverlap(matrix)
@@ -133,7 +133,7 @@ def test_PlotHorizontalAndVerticalAndDiagonalLines():
 
 
 def test_Part2Result():
-    with open("day05.input.txt", "rt") as inputFile:
+    with open("src/day05.input.txt", "rt") as inputFile:
         lines = ReadInputLines(inputFile.readlines())
         matrix = PlotHorizontalAndVerticalAndDiagonalLines(lines)
         assert 22213 == CountOverlap(matrix)

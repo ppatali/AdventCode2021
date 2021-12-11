@@ -7,7 +7,7 @@ def test_GetAlignWithMinCost_Linear():
 
 
 def test_Part1Result():
-    with open("day07.input.txt", "rt") as inputFile:
+    with open("src/day07.input.txt", "rt") as inputFile:
         positions = [int(i) for i in inputFile.readline().split(",")]
         assert 339, 343468 == GetAlignWithMinCost(positions)
 
@@ -18,6 +18,6 @@ def test_GetAlignWithMinCost_Accelerated():
 
 
 def test_Part2Result():
-    with open("day07.input.txt", "rt") as inputFile:
+    with open("src/day07.input.txt", "rt") as inputFile:
         positions = [int(i) for i in inputFile.readline().split(",")]
         assert 478, 96086265 == GetAlignWithMinCost(positions, CostAccelerated)
