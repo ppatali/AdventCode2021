@@ -16,7 +16,7 @@ def test_CountDigitsInOutput():
     ]
 
     lines = ReadInputLinesAsSets(input)
-    assert 26 == Count1478(lines)
+    assert 26 == CountDigits1478(lines)
 
 
 def test_Part1Result():
@@ -24,7 +24,7 @@ def test_Part1Result():
         readlines = inputFile.readlines()
         lines = ReadInputLinesAsSets(readlines)
 
-        assert 512 == Count1478(lines)
+        assert 512 == CountDigits1478(lines)
 
 
 def test_ReadInputLinesAsSets():
