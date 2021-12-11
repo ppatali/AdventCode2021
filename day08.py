@@ -2,15 +2,15 @@
 
 from typing import List, Tuple, Dict, Set
 
-# Input contains 10 signal patterns, one for each digit
-# followed by 4 digit outputs; signlas and outputs are separated by " | "
+# Input contains 10 signal patterns, one for each digit; followed by 4 digit outputs;
+# signlas and outputs are separated by " | "
 # Each alphabet in signal/output represent a segment of a 7-segment display
 # Example:
 # |<-------------------- signals --------------------------->|<------- outputs ------>
 # acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf
 #
-# This function takens N such lines as input and returns
-# - a tuple (signals, output)
+# This function takens List of such input string, parses and 
+# returns a List where each string is represents as a tuple of (signals, output)
 # - where signals is List of sets of segment chars in each signal
 # - and outputs is List of set of segment chars in each outputs
 def ReadInputLinesAsSets(
