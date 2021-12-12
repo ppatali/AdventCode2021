@@ -2,22 +2,28 @@
 
 from typing import List, Tuple, Dict, Set
 
+# [row, col]
+ADJACENT_MATRIX = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+
+
+def WithinBoundary(matrix: List[List[int]], row: int, col: int) -> bool:
+    return row >= 0 and row < len(matrix) and col >= 0 and col < len(matrix[0])
+
 
 def FindLowPointCoordinates(heatmap: List[str]) -> List[Tuple[int, int]]:
     lowPointCoordinates = []
-    for y in range(len(heatmap)):
-        for x in range(len(heatmap[y])):
+    for row in range(len(heatmap)):
+        for col in range(len(heatmap[row])):
             # Find if this is the local minimum
-            if int(heatmap[y][x]) < min(
+            if int(heatmap[row][col]) < min(
                 [
-                    # check adjacent points
-                    int(heatmap[y][x - 1] if x - 1 >= 0 else 10),  # left
-                    int(heatmap[y][x + 1] if x + 1 < len(heatmap[y]) else 10),  # right
-                    int(heatmap[y - 1][x] if y - 1 >= 0 else 10),  # top
-                    int(heatmap[y + 1][x] if y + 1 < len(heatmap) else 10),  # bottom
+                    int(heatmap[row + r][col + c])
+                    if WithinBoundary(heatmap, row + r, col + c)
+                    else 10
+                    for r, c in ADJACENT_MATRIX
                 ]
             ):
-                lowPointCoordinates.append((y, x))
+                lowPointCoordinates.append((row, col))
     return lowPointCoordinates
 
 
@@ -39,30 +45,22 @@ def FindBasins(
     for i in range(len(lowPointCoorinates)):
         queue: List[Tuple[int, int]] = [lowPointCoorinates[i]]
 
-        j = 0
+        j = 0  # queue head
         while j < len(queue):
-            y, x = queue[j]
-
-            basins[i].append(int(heatmap[y][x]))  # add to basin
+            rowCurr, colCurr = queue[j]  # dequeue
+            basins[i].append(int(heatmap[rowCurr][colCurr]))  # add to basin
 
             # check adjacent points, if valid add to back of the queue
-            # left
-            if x - 1 >= 0 and int(heatmap[y][x - 1]) != 9 and (y, x - 1) not in queue:
-                queue.append((y, x - 1))
+            for r, c in ADJACENT_MATRIX:
+                row, col = rowCurr + r, colCurr + c
+                if (
+                    WithinBoundary(heatmap, row, col)
+                    and int(heatmap[row][col]) != 9
+                    and (row, col) not in queue
+                ):
+                    queue.append((row, col))  # enqueue
 
-            # right
-            if x + 1 < len(heatmap[y]) and int(heatmap[y][x + 1]) != 9 and (y, x + 1) not in queue:
-                queue.append((y, x + 1))
-
-            # top
-            if y - 1 >= 0 and int(heatmap[y - 1][x]) != 9 and (y - 1, x) not in queue:
-                queue.append((y - 1, x))
-
-            # bottom
-            if y + 1 < len(heatmap) and int(heatmap[y + 1][x]) != 9 and (y + 1, x) not in queue:
-                queue.append((y + 1, x))
-
-            j += 1
+            j += 1  # next in the queue
 
     return basins
 
