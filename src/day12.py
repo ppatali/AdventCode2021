@@ -31,26 +31,70 @@ def IsBigCave(name: str) -> bool:
 
 
 def FindPaths(
-    caveMap: Dict[str, List[str]],
-    fromCave: str,
-    fullPaths: List[List[str]],
-    partialPath: List[str],
+    caveMap: Dict[str, List[str]],  # valid/available caves to caves paths
+    fromCave: str,  # currently in this cave
+    fullPaths: List[List[str]],  # full paths found so far
+    partialPath: List[str] = [],  # caves in the path constructed so far
 ) -> None:
 
-    partialPath.append(fromCave) # push
+    # push the current cave
+    partialPath.append(fromCave)
 
-    if fromCave == "end":        
-        fullPaths.append(partialPath.copy())
+    if fromCave == "end":
+        fullPaths.append(list(partialPath.copy()))
     else:
         for toCave in caveMap[fromCave]:
-            if ( # As per rule, check if it is valid to visit the next cave
+            # As per rule, check if it is valid to visit the next cave
+            if (
                 toCave == "end"
                 or IsBigCave(toCave)
                 or (IsSmallCave(toCave) and toCave not in partialPath)
             ):
                 FindPaths(caveMap, toCave, fullPaths, partialPath)
 
-    partialPath.pop()  # pop the current cave, as we are returning back to previous cave
+    # pop the current cave, as we are returning back to previous cave
+    partialPath.pop()
+
+
+def FindPaths2(
+    caveMap: Dict[str, List[str]],  # valid/available caves to caves paths
+    fromCave: str,  # currently in this cave
+    fullPaths: List[List[str]],  # full paths found so far
+    partialPath: List[str] = [],  # caves in the path constructed so far,
+    caveVisitCounter: Dict[str, int] = {},
+) -> None:
+
+    # push the current cave
+    partialPath.append(fromCave)
+    if fromCave not in caveVisitCounter:
+        caveVisitCounter[fromCave] = 0
+    caveVisitCounter[fromCave] += 1
+
+    if fromCave == "end":
+        fullPaths.append(list(partialPath.copy()))
+    else:
+        for toCave in caveMap[fromCave]:
+            # As per rule, check if it is valid to visit the next cave
+            if toCave == "end" or IsBigCave(toCave):
+                FindPaths2(caveMap, toCave, fullPaths, partialPath, caveVisitCounter)
+            elif IsSmallCave(toCave):
+                if toCave not in partialPath or (  # if cave not visited before
+                    caveVisitCounter[toCave]
+                    < 2  # this cave should have been max once before
+                    and sum(  # no other small cave visited 2 times
+                        count == 2
+                        for cave, count in caveVisitCounter.items()
+                        if cave != toCave and IsSmallCave(cave)
+                    )
+                    == 0
+                ):
+                    FindPaths2(
+                        caveMap, toCave, fullPaths, partialPath, caveVisitCounter
+                    )
+
+    # pop the current cave, as we are returning back to previous cave
+    partialPath.pop()
+    caveVisitCounter[fromCave] -= 1
 
 
 def main():
@@ -58,8 +102,12 @@ def main():
         lines = [line.strip() for line in inputFile.readlines()]
         caveMap = GetNodes(lines)
         fullPaths = []
-        FindPaths(caveMap, "start", fullPaths, [])
-        print(f"Total number of paths = {len(fullPaths)}")
+        FindPaths(caveMap, "start", fullPaths)
+        print(f"Part 1 - Total number of paths = {len(fullPaths)}")
+
+        fullPaths2 = []
+        FindPaths2(caveMap, "start", fullPaths2)
+        print(f"Part 2 - Total number of paths = {len(fullPaths2)}")
 
 
 if __name__ == "__main__":
