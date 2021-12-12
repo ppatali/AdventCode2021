@@ -101,6 +101,35 @@ def test_FindPaths_Sample2():
         assert path in testFullPaths
 
 
+def test_FindPaths_Sample3():
+    test = [
+        "fs-end",
+        "he-DX",
+        "fs-he",
+        "start-DX",
+        "pj-DX",
+        "end-zg",
+        "zg-sl",
+        "zg-pj",
+        "pj-he",
+        "RW-he",
+        "fs-DX",
+        "pj-RW",
+        "zg-RW",
+        "start-pj",
+        "he-WI",
+        "zg-he",
+        "pj-fs",
+        "start-RW",
+    ]
+
+    caveMap = GetNodes(test)
+    fullPaths = []
+    FindPaths(caveMap, "start", fullPaths, [])
+
+    assert 226 == len(fullPaths)
+
+
 def test_Part1Result():
     with open("src/day12.input.txt", "rt") as inputFile:
         lines = [line.strip() for line in inputFile.readlines()]
