@@ -37,22 +37,20 @@ def FindPaths(
     partialPath: List[str],
 ) -> None:
 
-    if fromCave == "end":
-        partialPath.append("end")
-        fullPaths.append(partialPath.copy())
-        partialPath.pop()
-    else:
-        partialPath.append(fromCave)  # push
+    partialPath.append(fromCave) # push
 
+    if fromCave == "end":        
+        fullPaths.append(partialPath.copy())
+    else:
         for toCave in caveMap[fromCave]:
-            if (
+            if ( # As per rule, check if it is valid to visit the next cave
                 toCave == "end"
                 or IsBigCave(toCave)
                 or (IsSmallCave(toCave) and toCave not in partialPath)
             ):
                 FindPaths(caveMap, toCave, fullPaths, partialPath)
 
-        partialPath.pop()  # pop
+    partialPath.pop()  # pop the current cave, as we are returning back to previous cave
 
 
 def main():
