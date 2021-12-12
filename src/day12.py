@@ -61,14 +61,14 @@ def FindPaths2(
     fromCave: str,  # currently in this cave
     fullPaths: List[List[str]],  # full paths found so far
     partialPath: List[str] = [],  # caves in the path constructed so far,
-    caveVisitCounter: Dict[str, int] = {},
+    visitCounter: Dict[str, int] = {},
 ) -> None:
 
     # push the current cave
     partialPath.append(fromCave)
-    if fromCave not in caveVisitCounter:
-        caveVisitCounter[fromCave] = 0
-    caveVisitCounter[fromCave] += 1
+    if fromCave not in visitCounter:
+        visitCounter[fromCave] = 0
+    visitCounter[fromCave] += 1
 
     if fromCave == "end":
         fullPaths.append(list(partialPath.copy()))
@@ -76,25 +76,28 @@ def FindPaths2(
         for toCave in caveMap[fromCave]:
             # As per rule, check if it is valid to visit the next cave
             if toCave == "end" or IsBigCave(toCave):
-                FindPaths2(caveMap, toCave, fullPaths, partialPath, caveVisitCounter)
+                FindPaths2(caveMap, toCave, fullPaths, partialPath, visitCounter)
             elif IsSmallCave(toCave):
-                if toCave not in partialPath or (  # if cave not visited before
-                    caveVisitCounter[toCave]
-                    < 2  # this cave should have been max once before
-                    and sum(  # no other small cave visited 2 times
+                # if this is first time visiting the cave
+                if toCave not in partialPath or visitCounter[toCave] == 0:
+                    FindPaths2(caveMap, toCave, fullPaths, partialPath, visitCounter)
+                # OR 
+                # this cave should have been visited atmost once
+                # and no other small cave was visited 2 times already
+                elif (
+                    visitCounter[toCave] == 1
+                    and sum(
                         count == 2
-                        for cave, count in caveVisitCounter.items()
+                        for cave, count in visitCounter.items()
                         if cave != toCave and IsSmallCave(cave)
                     )
                     == 0
                 ):
-                    FindPaths2(
-                        caveMap, toCave, fullPaths, partialPath, caveVisitCounter
-                    )
+                    FindPaths2(caveMap, toCave, fullPaths, partialPath, visitCounter)
 
     # pop the current cave, as we are returning back to previous cave
     partialPath.pop()
-    caveVisitCounter[fromCave] -= 1
+    visitCounter[fromCave] -= 1
 
 
 def main():
