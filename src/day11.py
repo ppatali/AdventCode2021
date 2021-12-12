@@ -2,80 +2,43 @@
 
 from typing import List, Tuple, Dict, Set
 
+# [row, col]
+ADJACENT_MATRIX = [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [1, -1], [-1, 1], [1, 1]]
 
-def IncrAndFlash(octpuses, y, x, flashes) -> bool:
-    octpuses[y][x] += 1
-    if octpuses[y][x] == 10:
-        flashes.append((y, x))
-        return True
-    else:
-        return False
+
+def WithinBoundary(matrix: List[List[int]], row: int, col: int) -> bool:
+    return row >= 0 and row < len(matrix) and col >= 0 and col < len(matrix[0])
 
 
 def MoveAStep(octopuses: List[List[int]]) -> int:
 
-    flashes = []
-    for y in range(len(octopuses)):
-        for x in range(len(octopuses[y])):
-            IncrAndFlash(octopuses, y, x, flashes)
+    flasheQueue = []
+    for row in range(len(octopuses)):
+        for col in range(len(octopuses[row])):
+            octopuses[row][col] += 1
+            if octopuses[row][col] == 10:
+                flasheQueue.append((row, col))  # enqueue
 
-    i = 0
-    while i < len(flashes):
-        y, x = flashes[i]
-
-        # adjacent
-        if x - 1 >= 0 and octopuses[y][x - 1] != 10:  # left
-            IncrAndFlash(octopuses, y, x - 1, flashes)
-        
-        if x + 1 < len(octopuses[y]) and octopuses[y][x + 1] != 10:  # right
-            IncrAndFlash(octopuses, y, x + 1, flashes)
-        
-        if y - 1 >= 0 and octopuses[y - 1][x] != 10:  # top
-            IncrAndFlash(octopuses, y - 1, x, flashes)
-                
-        if y + 1 < len(octopuses) and octopuses[y + 1][x] != 10: # botton
-            IncrAndFlash(octopuses, y + 1, x, flashes)
-
-        # diagonal
-        if (# left, top
-            x - 1 >= 0 
-            and y - 1 >= 0 
-            and octopuses[y - 1][x - 1] != 10
-        ):  
-            IncrAndFlash(octopuses, y - 1, x - 1, flashes)
-        
-        if ( # right, top
-            x + 1 < len(octopuses[y]) 
-            and y - 1 >= 0 
-            and octopuses[y - 1][x + 1] != 10
-        ):  
-            IncrAndFlash(octopuses, y - 1, x + 1, flashes)
-        
-        if ( # left, botton
-            x - 1 >= 0 
-            and y + 1 < len(octopuses) 
-            and octopuses[y + 1][x - 1] != 10
-        ):  
-            IncrAndFlash(octopuses, y + 1, x - 1, flashes)
-        
-        if ( # righ, botton
-            x + 1 < len(octopuses[y])
-            and y + 1 < len(octopuses)
-            and octopuses[y + 1][x + 1] != 10
-        ):
-            IncrAndFlash(octopuses, y + 1, x + 1, flashes)
-
+    i = 0  # queue head
+    while i < len(flasheQueue):
+        for r, c in ADJACENT_MATRIX:
+            row, col = flasheQueue[i][0] + r, flasheQueue[i][1] + c  # dequeue
+            if WithinBoundary(octopuses, row, col) and octopuses[row][col] != 10:
+                octopuses[row][col] += 1
+                if octopuses[row][col] == 10:
+                    flasheQueue.append((row, col))  # enqueue
         i += 1
 
-    for y, x in flashes:
-        octopuses[y][x] = 0
+    for row, col in flasheQueue:
+        octopuses[row][col] = 0
 
-    return len(flashes)
+    return len(flasheQueue)
+
 
 def AreAllOctopusesFlash(octopuses: List[List[int]]) -> bool:
-    for y in range(len(octopuses)):
-        for x in range(len(octopuses[y])):
-            if octopuses[y][x] != 0:
+    for row in range(len(octopuses)):
+        for col in range(len(octopuses[row])):
+            if octopuses[row][col] != 0:
                 return False
     return True
 
@@ -90,15 +53,16 @@ def FindSynchronizedFlashStep(octopuses: List[List[int]]) -> int:
 
 def main():
     with open("day11.input.txt", "rt") as inputFile:
-        octopuses = [[int(x) for x in y.strip()] for y in inputFile.readlines()]
+        octopuses = [[int(col) for col in row.strip()] for row in inputFile.readlines()]
         totalFlashes = 0
         for _ in range(100):
             totalFlashes += MoveAStep(octopuses)
         print(f"After 100 steps, total flashes = {totalFlashes}")
-    
+
         inputFile.seek(0)
-        octopuses = [[int(x) for x in y.strip()] for y in inputFile.readlines()]
-        print(f"Number of steps when all octopuses flash together = {FindSynchronizedFlashStep(octopuses)}")
+        octopuses = [[int(col) for col in row.strip()] for row in inputFile.readlines()]
+        syncStep = FindSynchronizedFlashStep(octopuses)
+        print(f"Number of steps when all octopuses flash together = {syncStep}")
 
 
 if __name__ == "__main__":
