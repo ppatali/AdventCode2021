@@ -10,7 +10,7 @@ def ReadInput(
     template = {}
     templateline = lines[0]
     for i in range(len(templateline) - 1):
-        elem1, elem2 = templateline[i], templateline[0][i + 1]
+        elem1, elem2 = templateline[i], templateline[i + 1]
         template[(elem1, elem2)] = (
             1 if (elem1, elem2) not in template else template[(elem1, elem2)] + 1
         )
