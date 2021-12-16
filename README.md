@@ -32,7 +32,10 @@ Note: This is part of my learning Python language.
   - [defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict)
   - [Counter](https://docs.python.org/3/library/collections.html#collections.Counter)
 - [itertools](https://docs.python.org/3/library/itertools.html)
-
+- [Nested List Comprehensions in Python](https://www.geeksforgeeks.org/nested-list-comprehensions-in-python/)
+- [heapq — Heap queue algorithm](https://docs.python.org/3/library/heapq.html)
+  - [Heap queue (or heapq) in Python](https://www.geeksforgeeks.org/heap-queue-or-heapq-in-python/)
+- 
 ### Python with VS Code
 - [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
 - [VSCode GUI tour: Explore The Elements of This Powerful IDE](https://python.land/creating-python-programs/vscode-gui-tour)
