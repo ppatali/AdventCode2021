@@ -1,4 +1,4 @@
-# https://adventofcode.com/2021/day/15
+# https://adventofcode.com/2021/day/16
 
 from typing import List, Tuple, Dict, Set
 import math

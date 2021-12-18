@@ -1,3 +1,5 @@
+# https://adventofcode.com/2021/day/17
+
 from typing import List, Tuple, Dict, Set
 import math
 
