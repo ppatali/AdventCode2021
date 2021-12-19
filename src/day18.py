@@ -4,14 +4,14 @@ from typing import List, Tuple, Dict, Set
 from functools import reduce
 
 # I could not solve this using lists and recursion. As I progressed, realized that tree would be better option
-# The below solution is using a tree and recursion. It is based entirely on below reddit answer and but had to make minor corrections
+# The implementation below uses tree and recursion. It is based entirely on below linked reddit answer; I had to make minor fixes
 # https://www.reddit.com/r/adventofcode/comments/rizw2c/comment/hp4961a/?utm_source=share&utm_medium=web2x&context=3
 # A possible improvement that can be done:
-# - Notice how the leaf nodes are computed and used to determine first right number and first left number of exploding node
-# - Another way would be to store the reference to parent node in the Node and the naviagte the tree structure to find this info
-# - Some thing similar to: https://github.com/SwampThingTom/AoC2021/blob/main/Python/18-Snailfish/Snailfish.py
+# - Notice how the leaf nodes are computed and used to determine first right number and first left number of an exploding node
+# - This could also be done through tree travelrsal. To support that logic, a reference to parent node has to be stored.
+# - Something similar attempted by another user/solution here: https://github.com/SwampThingTom/AoC2021/blob/main/Python/18-Snailfish/Snailfish.py
 
-# Some of things learned through this exercise are:
+# Learning from this exercise:
 # - Using map and reduce functools
 # - Building a simple binary tree
 # - If a list contains objects, then index() will do reference comparision
