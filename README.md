@@ -35,6 +35,7 @@ Note: This is part of my learning Python language.
 - [Nested List Comprehensions in Python](https://www.geeksforgeeks.org/nested-list-comprehensions-in-python/)
 - [heapq — Heap queue algorithm](https://docs.python.org/3/library/heapq.html)
   - [Heap queue (or heapq) in Python](https://www.geeksforgeeks.org/heap-queue-or-heapq-in-python/)
+- [functools](https://docs.python.org/3/library/functools.html)
 - 
 ### Python with VS Code
 - [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
