@@ -85,3 +85,15 @@ def readinput(filename: str) -> Tuple[List[List[int]], List[int]]:
             line = line.strip()
             image.append([1 if c == "#" else 0 for c in line])
         return image, image_enh_algo
+
+
+def main():
+    image, image_enh_algo = readinput("day20.input.txt")
+    image_output = apply(image, image_enh_algo, 2)
+    count_light_pixel = countpixels(image_output)
+    print(f"Number of lit pixels = {count_light_pixel}")
+
+
+if __name__ == "__main__":
+    main()
+
