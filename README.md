@@ -36,7 +36,9 @@ Note: This is part of my learning Python language.
 - [heapq — Heap queue algorithm](https://docs.python.org/3/library/heapq.html)
   - [Heap queue (or heapq) in Python](https://www.geeksforgeeks.org/heap-queue-or-heapq-in-python/)
 - [functools](https://docs.python.org/3/library/functools.html)
-- 
+  - [Python Functools – lru_cache()](https://www.geeksforgeeks.org/python-functools-lru_cache/)
+
+
 ### Python with VS Code
 - [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
 - [VSCode GUI tour: Explore The Elements of This Powerful IDE](https://python.land/creating-python-programs/vscode-gui-tour)
