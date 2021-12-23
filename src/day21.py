@@ -75,10 +75,12 @@ def play_method2(start_p1: int, start_p2) -> int:
 
 # Note: Part 2 - The below solution is based on following YouTube video
 # https://www.youtube.com/watch?v=rEyAbeV48tI
+# https://github.com/anthonywritescode/aoc2021/tree/main/day21
+
 # Things learned from this solutions
 # - itertools.product
 # - functools.cache (for memoization)
-#
+
 
 # Note: itertools.product below is equivalent to for loop on (1,2,3) nested 3 levels deep
 # Since the permutations of the dice repeats, a counter for each unique sum is used to
