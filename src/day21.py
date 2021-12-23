@@ -19,25 +19,31 @@ def move_pos(curr_pos: int, steps: int) -> int:
 
 
 def play(start_p1: int, start_p2: int, dice: Callable[[int], int]):
-    # matrix of each player [current position on board, score]
-    players = [[start_p1, 0], [start_p2, 0]]
+    pos_p1, score_p1, pos_p2, score_p2 = start_p1, 0, start_p2, 0
 
-    player_no = 0
     dice_roll_count = 0
     dice_last_pos = None
 
-    while players[0][1] < 1000 and players[1][1] < 1000:
-        dice_roll_count += 3
+    while score_p1 < 1000 and score_p2 < 1000:
         dice_rolls = roll_dice_thrice(dice, dice_last_pos)
-
-        players[player_no][0] = move_pos(players[player_no][0], sum(dice_rolls))
-        players[player_no][1] += players[player_no][0]
-
-        # get ready for next player turn
         dice_last_pos = dice_rolls[2]
-        player_no = 1 if player_no == 0 else 0
+        dice_roll_count += 3
+        
+        pos_p1 = move_pos(pos_p1, sum(dice_rolls))
+        score_p1 += pos_p1
+        if score_p1 >= 1000:
+            break
+        
+        dice_rolls = roll_dice_thrice(dice, dice_last_pos)
+        dice_last_pos = dice_rolls[2]
+        dice_roll_count += 3
+        
+        pos_p2 = move_pos(pos_p2, sum(dice_rolls))
+        score_p2 += pos_p2
+        if score_p2 >= 1000:
+            break
 
-    return dice_roll_count * (players[1][1] if players[0][1] >= 1000 else players[0][1])
+    return dice_roll_count * min(score_p1, score_p2)
 
 
 def main():
